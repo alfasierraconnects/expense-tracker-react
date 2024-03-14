@@ -9,7 +9,7 @@ export default function CurrentDate(props) {
   const dayIST = date.getDate();
 
   return (
-    <div className="bg-slate-800 p-4 px-6 border-2 rounded-xl flex flex-col items-center">
+    <div className="bg-slate-800 p-4 px-6 border-2 rounded-xl flex flex-col items-center w-28">
       <p className="font-bold">{yearIST}</p>
       <p>{monthIST}</p>
       <p className="font-bold text-4xl">{dayIST}</p>
