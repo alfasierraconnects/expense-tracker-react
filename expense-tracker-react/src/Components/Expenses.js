@@ -1,14 +1,18 @@
-import ExpenseItem from "./ExpenseItem.js";
+import React from "react";
+import ExpenseItem from "./ExpenseItem";
+import Card from "./Card";
 
 export default function Expenses(props) {
-  return props.expenses.map((expense, index) => {
-    return (
-      <ExpenseItem
-        key={expense.id}
-        date={expense.date}
-        title={expense.title}
-        price={expense.price}
-      ></ExpenseItem>
-    );
-  });
+  return (
+    <Card>
+      {props.expenses.map((expense, index) => (
+        <ExpenseItem
+          key={expense.id}
+          date={expense.date}
+          title={expense.title}
+          price={expense.price}
+        />
+      ))}
+    </Card>
+  );
 }
