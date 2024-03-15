@@ -1,5 +1,6 @@
 import "./App.css";
-import Expenses from "./Components/Expenses";
+import Expenses from "./Components/Expenses/Expenses";
+import NewExpenses from "./Components/NewExpenses/NewExpenses";
 
 function App() {
   const expenses = [
@@ -10,7 +11,8 @@ function App() {
   ];
 
   return (
-    <div>
+    <div className="flex flex-col gap-6 p-20 bg-neutral-600 ">
+      <NewExpenses />
       <Expenses expenses={expenses} />
     </div>
   );

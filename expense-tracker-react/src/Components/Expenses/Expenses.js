@@ -1,10 +1,9 @@
 import React from "react";
 import ExpenseItem from "./ExpenseItem";
-import Card from "./Card";
 
 export default function Expenses(props) {
   return (
-    <Card>
+    <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
       {props.expenses.map((expense, index) => (
         <ExpenseItem
           key={expense.id}
@@ -13,6 +12,6 @@ export default function Expenses(props) {
           price={expense.price}
         />
       ))}
-    </Card>
+    </div>
   );
 }
