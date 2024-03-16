@@ -9,18 +9,32 @@ export default function ExpenseForm() {
   const buttonClass =
     "font-bold text-white col-span-2 p-2 rounded-lg bg-gray-800 hover:bg-gray-700";
 
-  // const [itemName, setItemName] = useState("");
-  // const [itemPrice, setItemPrice] = useState("");
-  // const [itemDate, setItemDate] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
+  const [itemDate, setItemDate] = useState("");
+
+  // const [userInput, setuserInput] = useState({
+  //   itemName: "",
+  //   itemPrice: "",
+  //   itemDate: "",
+  // });
 
   const onItemNameChange = (event) => {
-    console.log(event.target.value);
+    setItemName(event.target.value);
+    // setuserInput({ ...userInput, itemName: event.target.value });
+    setuserInput((prevState) => {
+      return { ...prevState, itemName: event.target.value };
+    });
+    //setuserInput is a callback function. It schedules the function to be invoked at later point in time.
+    // The advantage of above method is that prevState holds the snap of latest changes in a state and at time of invoke it sends the latest state.
   };
   const onItemPriceChange = (event) => {
-    console.log(event.target.value);
+    setItemPrice(event.target.value);
+    // setuserInput({ ...userInput, itemPrice: event.target.value });
   };
   const onItemDateChange = (event) => {
-    console.log(event.target.value);
+    setItemDate(event.target.value);
+    // setuserInput({ ...userInput, itemDate: event.target.value });
   };
 
   return (
