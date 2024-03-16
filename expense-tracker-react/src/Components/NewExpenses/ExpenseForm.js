@@ -19,56 +19,71 @@ export default function ExpenseForm() {
   //   itemDate: "",
   // });
 
-  const onItemNameChange = (event) => {
+  const itemNameChangeHandler = (event) => {
     setItemName(event.target.value);
     // setuserInput({ ...userInput, itemName: event.target.value });
-    setuserInput((prevState) => {
-      return { ...prevState, itemName: event.target.value };
-    });
+    // setuserInput((prevState) => {
+    //   return { ...prevState, itemName: event.target.value };
+    // });
     //setuserInput is a callback function. It schedules the function to be invoked at later point in time.
     // The advantage of above method is that prevState holds the snap of latest changes in a state and at time of invoke it sends the latest state.
   };
-  const onItemPriceChange = (event) => {
+  const itemPriceChangeHandler = (event) => {
     setItemPrice(event.target.value);
     // setuserInput({ ...userInput, itemPrice: event.target.value });
   };
-  const onItemDateChange = (event) => {
+  const itemDateChangeHandler = (event) => {
     setItemDate(event.target.value);
     // setuserInput({ ...userInput, itemDate: event.target.value });
   };
 
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+
+    const expense = {
+      title: itemName,
+      price: itemPrice,
+      date: new Date(itemDate),
+    };
+
+    console.log(expense);
+    setItemName("");
+    setItemPrice("");
+    setItemDate("");
+  };
+
   return (
     <div>
-      <form className={formContainerClass}>
+      <form onSubmit={formSubmitHandler} className={formContainerClass}>
         <label className={labelClass}>Item Purchased</label>
         <input
-          onChange={onItemNameChange}
+          onChange={itemNameChangeHandler}
           className={inputClass}
           name="item-purchased"
           type="text"
           placeholder="Item Name"
-          // value={itemName}
+          value={itemName}
           required
         />
         <label className={labelClass}>Item Price</label>
         <input
-          onChange={onItemPriceChange}
+          onChange={itemPriceChangeHandler}
           className={inputClass}
           name="item-price"
           type="number"
           min={0}
           step={5}
           placeholder="₹ 100"
-          // value={itemPrice}
+          value={itemPrice}
           required
         />
         <label className={labelClass}>Purchase Date</label>
         <input
-          onChange={onItemDateChange}
+          onChange={itemDateChangeHandler}
           className={inputClass}
           name="purchase-date"
           type="date"
-          // value={itemDate}
+          value={itemDate}
           required
         />
         <button className={buttonClass} type="submit">
