@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function ExpenseForm() {
+export default function ExpenseForm(props) {
   // Define common styling properties
   const formContainerClass =
     "Form grid grid-cols-2 bg-purple-400 p-6 rounded-lg shadow-lg gap-2";
@@ -47,6 +47,9 @@ export default function ExpenseForm() {
     };
 
     console.log(expense);
+
+    props.onSendDataToNewExpenses(expense);
+
     setItemName("");
     setItemPrice("");
     setItemDate("");

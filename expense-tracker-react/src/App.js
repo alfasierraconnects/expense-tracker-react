@@ -10,9 +10,13 @@ function App() {
     { id: "4", date: new Date(2023, 1, 14), title: "Laptop", price: 200 },
   ];
 
+  const dataFromNewExpenseHandler = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="flex flex-col gap-6 p-20 bg-neutral-600 ">
-      <NewExpenses />
+      <NewExpenses onSendDataToApp={dataFromNewExpenseHandler} />
       <Expenses expenses={expenses} />
     </div>
   );
