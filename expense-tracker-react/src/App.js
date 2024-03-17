@@ -1,7 +1,7 @@
-import "./App.css";
 import React, { useState } from "react";
 import Expenses from "./Components/Expenses/Expenses";
 import NewExpenses from "./Components/NewExpenses/NewExpenses";
+import BarChart from "./Components/BarChart";
 
 const dummy_expenses = [
   { id: "1", date: new Date(2023, 7, 15), title: "Insurance", price: 100 },
@@ -24,6 +24,7 @@ function App() {
     <div className="flex flex-col gap-6 p-20 bg-neutral-600 ">
       <NewExpenses onSendDataToApp={dataFromNewExpenseHandler} />
       <Expenses expenses={expenses} />
+      <BarChart expenses={expenses} />
     </div>
   );
 }
