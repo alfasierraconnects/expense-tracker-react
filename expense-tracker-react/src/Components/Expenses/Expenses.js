@@ -1,26 +1,38 @@
 import React, { useState } from "react";
+import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
-import ExpensesList from "./ExpensesList";
 
 export default function Expenses(props) {
-  const [filteredYear, setFilteredYear] = useState("2021");
-  const [filteredExpenses, setFilteredExpenses] = useState(props.expenses);
+  const [filteredList, setFilteredList] = useState(props.expenses);
 
-  const filterChangeHandler = (selectedYear) => {
-    setFilteredYear(selectedYear);
-    const filteredExpenses = props.expenses.filter((expense) => {
-      return expense.date.getFullYear().toString() === selectedYear;
+  const filterHandler = (filterYear) => {
+    // console.log(filterYear);
+    if (filterYear === "") {
+      return setFilteredList(props.expenses);
+    }
+    const newList = props.expenses.filter((el) => {
+      console.log(el.date.getFullYear());
+      return el.date.getFullYear() === Number(filterYear);
     });
-    setFilteredExpenses(filteredExpenses);
+    setFilteredList(newList);
   };
 
   return (
     <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
-      <ExpensesFilter
-        selected={filteredYear}
-        onChangeFilter={filterChangeHandler}
-      />
-      <ExpensesList list={filteredExpenses} />
+      <ExpensesFilter yearToFilter={filterHandler} />
+      {filteredList.length === 0 ? (
+        <p className="text-gray-200">No Expenses found</p>
+      ) : (
+        filteredList.map((expense) => (
+          <ExpenseItem
+            key={expense.id}
+            id={expense.id}
+            date={expense.date}
+            title={expense.title}
+            price={expense.price}
+          />
+        ))
+      )}
     </div>
   );
 }

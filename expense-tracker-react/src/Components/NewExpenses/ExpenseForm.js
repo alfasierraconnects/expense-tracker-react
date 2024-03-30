@@ -7,11 +7,15 @@ export default function ExpenseForm(props) {
   const labelClass = "font-bold text-lg";
   const inputClass = "p-1 rounded-lg";
   const buttonClass =
-    "font-bold text-white col-span-2 p-2 rounded-lg bg-gray-800 hover:bg-gray-700";
+    "w-40 font-bold text-white col-span-2 p-2 rounded-lg bg-gray-800 hover:bg-gray-700";
 
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
   const [itemDate, setItemDate] = useState("");
+
+  const closeForm = () => {
+    props.closeForm();
+  };
 
   // const [userInput, setuserInput] = useState({
   //   itemName: "",
@@ -46,7 +50,7 @@ export default function ExpenseForm(props) {
       date: new Date(itemDate),
     };
 
-    console.log(expense);
+    // console.log(expense);
 
     props.onSendDataToNewExpenses(expense);
 
@@ -89,9 +93,14 @@ export default function ExpenseForm(props) {
           value={itemDate}
           required
         />
-        <button className={buttonClass} type="submit">
-          Add Expense
-        </button>
+        <div className="col-span-2 flex justify-around">
+          <button onClick={closeForm} className={buttonClass}>
+            Close
+          </button>
+          <button className={buttonClass} type="submit">
+            Add Expense
+          </button>
+        </div>
       </form>
     </div>
   );
