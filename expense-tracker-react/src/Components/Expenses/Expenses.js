@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesChart from "../ExpensesChart/ExpensesChart";
 
 export default function Expenses(props) {
   const [filteredList, setFilteredList] = useState(props.expenses);
@@ -20,6 +21,7 @@ export default function Expenses(props) {
   return (
     <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
       <ExpensesFilter yearToFilter={filterHandler} />
+      <ExpensesChart />
       {filteredList.length === 0 ? (
         <p className="text-gray-200">No Expenses found</p>
       ) : (

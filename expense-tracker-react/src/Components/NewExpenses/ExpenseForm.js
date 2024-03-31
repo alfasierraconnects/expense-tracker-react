@@ -79,7 +79,7 @@ export default function ExpenseForm(props) {
           name="item-price"
           type="number"
           min={0}
-          step={5}
+          step={1}
           placeholder="₹ 100"
           value={itemPrice}
           required
