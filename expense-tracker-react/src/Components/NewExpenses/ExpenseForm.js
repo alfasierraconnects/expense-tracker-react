@@ -13,10 +13,6 @@ export default function ExpenseForm(props) {
   const [itemPrice, setItemPrice] = useState("");
   const [itemDate, setItemDate] = useState("");
 
-  const closeForm = () => {
-    props.closeForm();
-  };
-
   // const [userInput, setuserInput] = useState({
   //   itemName: "",
   //   itemPrice: "",
@@ -94,7 +90,7 @@ export default function ExpenseForm(props) {
           required
         />
         <div className="col-span-2 flex justify-around">
-          <button onClick={closeForm} className={buttonClass}>
+          <button onClick={() => props.closeForm()} className={buttonClass}>
             Close
           </button>
           <button className={buttonClass} type="submit">

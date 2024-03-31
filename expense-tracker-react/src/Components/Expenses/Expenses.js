@@ -5,23 +5,29 @@ import ExpensesChart from "../ExpensesChart/ExpensesChart";
 
 export default function Expenses(props) {
   const [filteredList, setFilteredList] = useState(props.expenses);
+  const [listForGraph, setListForGraph] = useState([]);
+  const [yearOnGraph, setYearOnGraph] = useState("YYYY");
 
   const filterHandler = (filterYear) => {
     // console.log(filterYear);
-    if (filterYear === "") {
-      return setFilteredList(props.expenses);
+    if (filterYear === "" || filterYear.length < 4) {
+      setFilteredList(props.expenses);
+      setListForGraph([]);
+      setYearOnGraph("YYYY");
+      return;
     }
     const newList = props.expenses.filter((el) => {
-      console.log(el.date.getFullYear());
       return el.date.getFullYear() === Number(filterYear);
     });
     setFilteredList(newList);
+    setListForGraph(newList);
+    setYearOnGraph(filterYear);
   };
 
   return (
     <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
       <ExpensesFilter yearToFilter={filterHandler} />
-      <ExpensesChart />
+      <ExpensesChart year={yearOnGraph} list={listForGraph} />
       {filteredList.length === 0 ? (
         <p className="text-gray-200">No Expenses found</p>
       ) : (

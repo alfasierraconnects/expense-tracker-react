@@ -1,8 +1,20 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 
-export default function ExpensesChart() {
+export default function ExpensesChart(props) {
   const canvasRef = useRef(null);
+  const valuesForGraph = useRef([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [data, setData] = useState(valuesForGraph);
+
+  useEffect(() => {
+    props.list.forEach((el) => {
+      valuesForGraph.current[el.date.getMonth()] += el.price;
+    });
+    setData([...valuesForGraph.current]);
+    valuesForGraph.current.forEach((el, index) => {
+      valuesForGraph.current[index] = 0;
+    });
+  }, [props.list]);
 
   useEffect(() => {
     const ctx = canvasRef.current.getContext("2d");
@@ -31,11 +43,11 @@ export default function ExpensesChart() {
         ],
         datasets: [
           {
-            label: `Expenses for someYear`,
+            label: `Expenses for ${props.year}`,
             backgroundColor: "rgba(75, 192, 192, 0.2)",
             borderColor: "rgba(75, 192, 192, 1)",
             borderWidth: 1,
-            data: [3, 2, 2, 6, 4],
+            data: data,
           },
         ],
       },
@@ -47,11 +59,11 @@ export default function ExpensesChart() {
         },
       },
     });
-  }, []);
+  }, [props.year, data]);
 
   return (
     <div>
-      <canvas ref={canvasRef} id="expense-chart"></canvas>
+      <canvas ref={canvasRef}></canvas>
     </div>
   );
 }

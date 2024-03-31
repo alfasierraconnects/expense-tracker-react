@@ -17,7 +17,7 @@ export default function NewExpenses(props) {
 
   return (
     <>
-      {formActive && (
+      {formActive || (
         <button
           onClick={formVisibilityHandler}
           className="font-bold text-white col-span-2 p-2 rounded-lg bg-gray-800 hover:bg-gray-700"
@@ -25,7 +25,7 @@ export default function NewExpenses(props) {
           Add Expenses
         </button>
       )}
-      {formActive || (
+      {formActive && (
         <ExpenseForm
           onSendDataToNewExpenses={datafromExpenseFormHandler}
           closeForm={formVisibilityHandler}
