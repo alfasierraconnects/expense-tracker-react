@@ -13,7 +13,6 @@ export default function Expenses(props) {
   }, [filteredList]);
 
   const filterHandler = (filterYear) => {
-    // console.log(filterYear);
     if (filterYear === "" || filterYear.length < 4) {
       setFilteredList(props.expenses);
       setListForGraph([]);
@@ -28,6 +27,11 @@ export default function Expenses(props) {
     }
   };
 
+  useEffect(() => {
+    filterHandler(yearOnGraph);
+    // eslint-disable-next-line
+  }, [props.expenses]);
+
   return (
     <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
       <ExpensesFilter yearToFilter={filterHandler} />
@@ -41,6 +45,7 @@ export default function Expenses(props) {
             date={expense.date}
             title={expense.title}
             price={expense.price}
+            onDelete={props.deleteExpense}
           />
         ))
       )}

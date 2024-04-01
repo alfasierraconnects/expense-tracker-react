@@ -3,11 +3,12 @@ import React, { useState } from "react";
 export default function ExpenseForm(props) {
   // Define common styling properties
   const formContainerClass =
-    "Form grid grid-cols-2 bg-purple-400 p-6 rounded-lg shadow-lg gap-2";
+    "Form grid grid-cols-2 bg-gradient-to-l from-cyan-600 to-sky-700 p-8 rounded-lg shadow-lg gap-2";
   const labelClass = "font-bold text-lg";
-  const inputClass = "p-1 rounded-lg";
+  const inputClass =
+    "p-1 rounded-lg font-semibold outline-none focus:ring-2 focus:ring-cyan-950";
   const buttonClass =
-    "w-40 font-bold text-white col-span-2 p-2 rounded-lg bg-gray-800 hover:bg-gray-700";
+    "w-44 font-bold text-white col-span-2 p-2 rounded-lg bg-gray-800 hover:bg-gray-700";
 
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
@@ -89,7 +90,7 @@ export default function ExpenseForm(props) {
           value={itemDate}
           required
         />
-        <div className="col-span-2 flex justify-around">
+        <div className="col-span-2 flex justify-around mt-5">
           <button onClick={() => props.closeForm()} className={buttonClass}>
             Close
           </button>

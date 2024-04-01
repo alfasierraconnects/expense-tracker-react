@@ -57,6 +57,33 @@ export default function ExpensesChart(props) {
         scales: {
           y: {
             beginAtZero: true,
+            ticks: {
+              color: "white", // Color of Y-axis labels
+              font: {
+                weight: "bold", // Font weight of Y-axis labels
+                size: 15,
+              },
+            },
+          },
+          x: {
+            ticks: {
+              color: "white", // Color of X-axis labels
+              font: {
+                weight: "bold", // Font weight of X-axis labels
+                size: 15,
+              },
+            },
+          },
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: `Expenses for ${year} (₹)`,
+            color: "white", // Color of chart title
+            font: {
+              weight: "bold", // Font weight of chart title
+              size: 20,
+            },
           },
         },
       },

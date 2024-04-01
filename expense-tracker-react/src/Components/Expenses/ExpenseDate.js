@@ -21,10 +21,10 @@ export default function ExpenseDate(props) {
   const date = props.date.getDate();
 
   return (
-    <div className="bg-slate-800 p-4 px-6 border-2 rounded-xl flex flex-col items-center w-28 shadow-lg">
+    <div className="bg-slate-800 p-1 border-2 rounded-xl flex flex-col items-center w-24 shadow-lg">
       <div>{month}</div>
-      <div className="font-bold">{year}</div>
-      <div className="font-bold text-4xl">{date}</div>
+      <div className="font-semibold">{year}</div>
+      <div className="font-semibold text-3xl">{date}</div>
     </div>
   );
 }
