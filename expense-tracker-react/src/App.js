@@ -43,26 +43,30 @@ function App() {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-6 p-6 bg-neutral-600 min-h-screen relative">
-      <div className="flex flex-col gap-6">
-        {/* Display ExpensesChart and NewExpenses components */}
-        <ExpensesChart year={chartData[0]} list={chartData[1]} />
-        <NewExpenses onSendDataToApp={dataFromNewExpenseHandler} />
+    <div className="p-6 bg-neutral-600 min-h-screen relative">
+      <div className="grid grid-cols-2 gap-6">
+        <div className="flex flex-col gap-6">
+          {/* Display ExpensesChart and NewExpenses components */}
+          <ExpensesChart year={chartData[0]} list={chartData[1]} />
+          <NewExpenses onSendDataToApp={dataFromNewExpenseHandler} />
+        </div>
+        {/* Display Expenses component */}
+        <div className="rounded-lg overflow-y-scroll md:h-[685px] bg-slate-800 scrollbar-thin scrollbar-thumb-cyan-700 scrollbar-track-gray-500 scrollbar-thumb-rounded">
+          <Expenses
+            expenses={expenses}
+            dataForChart={dataForChartHandler}
+            deleteExpense={expenseToDeleteHandler}
+          />
+        </div>
+        {/* Conditionally render DeleteExpenseModal */}
+        {deleteModalActive && (
+          <DeleteExpenseModal
+            modalActive={modalActiveHandler}
+            confirmDelete={confirmDeleteHandler}
+            id={idToDelete.current}
+          />
+        )}
       </div>
-      {/* Display Expenses component */}
-      <Expenses
-        expenses={expenses}
-        dataForChart={dataForChartHandler}
-        deleteExpense={expenseToDeleteHandler}
-      />
-      {/* Conditionally render DeleteExpenseModal */}
-      {deleteModalActive && (
-        <DeleteExpenseModal
-          modalActive={modalActiveHandler}
-          confirmDelete={confirmDeleteHandler}
-          id={idToDelete.current}
-        />
-      )}
     </div>
   );
 }

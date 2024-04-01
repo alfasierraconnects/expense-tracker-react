@@ -33,7 +33,7 @@ export default function Expenses(props) {
   }, [props.expenses]);
 
   return (
-    <div className="bg-slate-800 p-4 rounded-lg shadow-lg">
+    <div className="bg-slate-800 p-4">
       <ExpensesFilter yearToFilter={filterHandler} />
       {filteredList.length === 0 ? (
         <p className="text-gray-200">No Expenses found</p>
