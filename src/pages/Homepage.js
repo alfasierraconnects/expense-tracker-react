@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
-import Expenses from "./Components/Expenses/Expenses";
-import NewExpenses from "./Components/NewExpenses/NewExpenses";
-import dummy_expenses from "./DummyExpenses";
-import ExpensesChart from "./Components/ExpensesChart/ExpensesChart";
-import DeleteExpenseModal from "./Components/Modal/DeleteExpenseModal";
+import Expenses from "../Components/Expenses/Expenses";
+import NewExpenses from "../Components/NewExpenses/NewExpenses";
+import dummy_expenses from "../DummyExpenses";
+import ExpensesChart from "../Components/ExpensesChart/ExpensesChart";
+import DeleteExpenseModal from "../Components/Modal/DeleteExpenseModal";
 
-function App() {
+const Homepage = () => {
   // State variables
   const [expenses, setExpenses] = useState(dummy_expenses);
   const [chartData, setChartData] = useState(["YYYY", []]);
@@ -69,6 +69,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Homepage;
